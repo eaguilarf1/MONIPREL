@@ -1,9 +1,19 @@
+using Microsoft.EntityFrameworkCore;
+using Moniprel.Api.Datos;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+var cadenaConexion = builder.Configuration.GetConnectionString("PostgreSQL")
+    ?? throw new InvalidOperationException(
+        "No se encontró la cadena de conexión 'PostgreSQL'.");
+
+builder.Services.AddDbContext<ContextoMoniprel>(opciones =>
+    opciones.UseNpgsql(cadenaConexion));
 
 var app = builder.Build();
 
