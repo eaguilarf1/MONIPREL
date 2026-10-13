@@ -25,4 +25,7 @@ public class Usuario
 
     public ICollection<AsignacionOrganizacional> AsignacionesComoColaborador { get; set; }
         = new List<AsignacionOrganizacional>();
+
+    public ICollection<Evaluacion> Evaluaciones { get; set; }
+        = new List<Evaluacion>();
 }
