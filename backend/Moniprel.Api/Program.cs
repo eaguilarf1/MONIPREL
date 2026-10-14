@@ -91,6 +91,8 @@ builder.Services.Configure<ConfiguracionSmtp>(
 
 builder.Services.AddScoped<IServicioCorreo, ServicioCorreo>();
 
+builder.Services.AddHostedService<ServicioEnvioAutomaticoReportes>();
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
