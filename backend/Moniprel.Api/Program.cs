@@ -6,6 +6,7 @@ using Microsoft.OpenApi;
 using Moniprel.Api.Datos;
 using Moniprel.Api.Interfaces;
 using Moniprel.Api.Servicios;
+using Moniprel.Api.Configuraciones;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -84,6 +85,11 @@ builder.Services
 builder.Services.AddAuthorization();
 
 builder.Services.AddScoped<IServicioToken, ServicioToken>();
+
+builder.Services.Configure<ConfiguracionSmtp>(
+    builder.Configuration.GetSection("Smtp"));
+
+builder.Services.AddScoped<IServicioCorreo, ServicioCorreo>();
 
 var app = builder.Build();
 

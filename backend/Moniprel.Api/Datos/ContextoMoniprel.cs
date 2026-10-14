@@ -35,6 +35,9 @@ public class ContextoMoniprel : DbContext
     public DbSet<ResultadoDimension> ResultadosDimension =>
         Set<ResultadoDimension>();
 
+    public DbSet<ConfiguracionReporte> ConfiguracionesReporte =>
+        Set<ConfiguracionReporte>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
@@ -288,6 +291,20 @@ modelBuilder.Entity<ResultadoDimension>(entidad =>
         x.DimensionId
     })
     .IsUnique();
+});
+
+modelBuilder.Entity<ConfiguracionReporte>(entidad =>
+{
+    entidad.ToTable("configuraciones_reporte");
+
+    entidad.HasKey(x => x.Id);
+
+    entidad.Property(x => x.CorreoDestinatario)
+        .HasMaxLength(150)
+        .IsRequired();
+
+    entidad.Property(x => x.FrecuenciaDias)
+        .IsRequired();
 });
 
         modelBuilder.Entity<Rol>().HasData(

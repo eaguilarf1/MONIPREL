@@ -52,6 +52,36 @@ namespace Moniprel.Api.Migrations
                     b.ToTable("asignaciones_organizacionales", (string)null);
                 });
 
+            modelBuilder.Entity("Moniprel.Api.Entidades.ConfiguracionReporte", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CorreoDestinatario")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)");
+
+                    b.Property<bool>("EnvioAutomatico")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("FechaActualizacion")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("FrecuenciaDias")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("UltimoEnvio")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("configuraciones_reporte", (string)null);
+                });
+
             modelBuilder.Entity("Moniprel.Api.Entidades.Dimension", b =>
                 {
                     b.Property<int>("Id")
